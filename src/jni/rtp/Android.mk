@@ -45,13 +45,25 @@ LOCAL_STATIC_LIBRARIES := libgsm libstagefright_amrnbdec libstagefright_amrnbenc
 LOCAL_C_INCLUDES += \
 	$(JNI_H_INCLUDE) \
 	external/libgsm/inc \
-	frameworks/av/media/libstagefright/codecs/amrnb/common/include \
-	frameworks/av/media/libstagefright/codecs/amrnb/common/ \
-	frameworks/av/media/libstagefright/codecs/amrnb/enc/include \
-	frameworks/av/media/libstagefright/codecs/amrnb/enc/src \
-	frameworks/av/media/libstagefright/codecs/amrnb/dec/include \
-	frameworks/av/media/libstagefright/codecs/amrnb/dec/src \
 	$(call include-path-for, audio-effects)
+
+ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
+LOCAL_C_INCLUDES += \
+        frameworks/av-caf/media/libstagefright/codecs/amrnb/common/include \
+        frameworks/av-caf/media/libstagefright/codecs/amrnb/common/ \
+        frameworks/av-caf/media/libstagefright/codecs/amrnb/enc/include \
+        frameworks/av-caf/media/libstagefright/codecs/amrnb/enc/src \
+        frameworks/av-caf/media/libstagefright/codecs/amrnb/dec/include \
+        frameworks/av-caf/media/libstagefright/codecs/amrnb/dec/src
+else
+LOCAL_C_INCLUDES += \
+        frameworks/av/media/libstagefright/codecs/amrnb/common/include \
+        frameworks/av/media/libstagefright/codecs/amrnb/common/ \
+        frameworks/av/media/libstagefright/codecs/amrnb/enc/include \
+        frameworks/av/media/libstagefright/codecs/amrnb/enc/src \
+        frameworks/av/media/libstagefright/codecs/amrnb/dec/include \
+        frameworks/av/media/libstagefright/codecs/amrnb/dec/src
+endif
 
 LOCAL_CFLAGS += -fvisibility=hidden
 
