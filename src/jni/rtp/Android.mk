@@ -48,6 +48,15 @@ LOCAL_C_INCLUDES += \
 	$(call include-path-for, audio-effects)
 
 ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
+ifeq ($(BOARD_NO_USES_AV-CAF),true)
+LOCAL_C_INCLUDES += \
+        frameworks/av/media/libstagefright/codecs/amrnb/common/include \
+        frameworks/av/media/libstagefright/codecs/amrnb/common/ \
+        frameworks/av/media/libstagefright/codecs/amrnb/enc/include \
+        frameworks/av/media/libstagefright/codecs/amrnb/enc/src \
+        frameworks/av/media/libstagefright/codecs/amrnb/dec/include \
+        frameworks/av/media/libstagefright/codecs/amrnb/dec/src
+else
 LOCAL_C_INCLUDES += \
         frameworks/av-caf/media/libstagefright/codecs/amrnb/common/include \
         frameworks/av-caf/media/libstagefright/codecs/amrnb/common/ \
@@ -55,7 +64,7 @@ LOCAL_C_INCLUDES += \
         frameworks/av-caf/media/libstagefright/codecs/amrnb/enc/src \
         frameworks/av-caf/media/libstagefright/codecs/amrnb/dec/include \
         frameworks/av-caf/media/libstagefright/codecs/amrnb/dec/src
-else
+endif
 LOCAL_C_INCLUDES += \
         frameworks/av/media/libstagefright/codecs/amrnb/common/include \
         frameworks/av/media/libstagefright/codecs/amrnb/common/ \
